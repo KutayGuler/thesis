@@ -6,6 +6,10 @@ style=numeric,
 sorting=ynt
 ]{biblatex}
 \usepackage{todonotes}
+\usepackage{caption}
+% \usepackage{fontspec}
+
+% \setmainfont{Times New Roman}
 
 \addbibresource{bibliography.bib}
 
@@ -186,21 +190,87 @@ Monaco Editor is an open source, fully featured, browser-based code editor. It i
 Tauri is a framework for building tiny and fast binaries for all major desktop platforms. Developers can integrate any front-end framework that compiles to HTML, JS and CSS for building their user interface. The backend of the application is a rust-sourced binary with an API that the front-end can interact with \cite{tauri}.
 
 \subsection{TypeDoc}
-\todo{explain typedoc}
+TypeDoc is a documentation generator for TypeScript type declarations. It uses declarations themselves and TSDoc comments placed above the declarations to generate documentation in JSON or in multi page HTML format \cite{typedoc}.
 
 \section{Architecture}
 Roguelighter consists of a library and two apps. The library is the engine itself, and the apps are a desktop application and a website which includes documentation, interactive tutorial and download link for the desktop app. Library code is shared between these two projects with monorepo architecture.
 
 \subsection{Monorepo}
-\todo{explain monorepo}
-\subsection{Desktop Application}
-\subsection{Configuration File}
-\subsubsection{Views}
-\subsection{Exports}
+Explaining monorepos can be easier if we first learn what is the opposite of a monorepo which we can name as polyrepos. A polyrepo is the current standard way of developing applications: a repo for each team, application, or project. And it's common that each repo has a single build artifact, and simple build pipeline. This approach brings autonomy to different teams working on the same project but it has its downsides.\\
 
+First off, sharing code becomes cumbersome. The consumer repo should have a dependency to the provider repo and consumers should wait for the latest updates to go live to use a certain feature. Common code patterns and components gets implemented in each repo differently, which increases the maintenance cost for each team and creates duplicate logic. Tooling becomes inconsistent, as each team introduces their own standards or ad hoc solutions.\\
+
+So what is a monorepo? A monorepo is a single repository containing multiple distinct projects, with well-defined relationships. No need to publish packages since all the consumers are in the same repo. No need to worry about incompatibilities because of projects depending on conflicting versions of third party libraries. Everything related to the monorepo becomes consistent whether that is a simple component, a developer tool or a complex build workflow \cite{monorepo}.
+
+\subsection{Desktop Application}
+\subsubsection{Configuration File}
+
+\begin{itemize}
+    \item \textbf{Settings:} Provides defaults for the project. Such as default frames per second, default animation function and default animation duration.
+    \item \textbf{Backgrounds:} An object where keys define the name of the background, and value points to the route of the source. This object also affects the Map Editor interface, which we will see in \todo{reference}\\\\
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{backgrounds.png}
+        \captionof{figure}{Example Backgrounds object}
+        \label{fig:figure1}
+    \end{minipage}
+
+    \item \textbf{Collisions:} An array of background keys. This tells the game that agents cannot move into tiles with these backgrounds.\\\\
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{collisions.png}
+        \captionof{figure}{Example Collisions object}
+        \label{fig:figure2}
+    \end{minipage}
+    
+    \item \textbf{Agents:} Agents are player and non-player entities that are interactable, or have "agency". Animation states and defaults of agents can be configured in this object.\\\\
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{agents.png}
+        \captionof{figure}{Example Agents object}
+        \label{fig:figure3}
+    \end{minipage}
+    
+    \item \textbf{Variables:} These are custom variables that can be defined and manipulated by the developer via using Events.\\\\ \todo{refer Events}
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{variables.png}
+        \captionof{figure}{Example Variables object}
+        \label{fig:figure4}
+    \end{minipage}
+    
+    \item \textbf{Events:} An object where keys define the name of the event, and values the sequence of actions (an array of arrays). An action is an array of keywords and primitive values such as strings, numbers or booleans. These values should be placed in a specific order, or the program will return a compiler error, pointing out the wrongly placed tokens. If placed correctly and required conditions are met during the game, the array of actions gets executed in order and synchronously, meaning the action will be fired once the previous action is completed.\\\\ 
+        \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{events.png}
+        \captionof{figure}{Example Events object}
+        \label{fig:figure5}
+    \end{minipage}
+    
+    \item \textbf{Key Bindings:} key bindingsss\todo{keyb} \\\\
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{key bindings.png}
+        \captionof{figure}{Example Key Bindings object}
+        \label{fig:figure6}
+    \end{minipage}
+    
+    \item \textbf{GUI:} GUI (Graphical User Interface) \todo{gui} \\\\
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{gui.png}
+        \captionof{figure}{Example GUI object}
+        \label{fig:figure6}
+    \end{minipage}
+    
+    \item \textbf{Errors}
+\end{itemize}
+\subsubsection{Views}
 \textbf{Code Editor}
 \textbf{Map Editor}
 \textbf{Renderer}
+\subsubsection{Exports}
+
 \subsection{Website}
 \subsubsection{Documentation}
 \subsubsection{Interactive Tutorial}
