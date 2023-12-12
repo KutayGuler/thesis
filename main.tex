@@ -32,6 +32,117 @@ The term roguelike originated in a forum discussion to find an umbrella term for
 
 Many roguelike games were released in the upcoming years, so it was time to define what a roguelike game is more concretely. In 2008, the International Roguelike Development Conference was held in Berlin, and gave birth to the Berlin Interpretation \cite{berlin}.
 
+\subsection{Berlin Interpretation}
+
+Text below is the formatted version of the original Berlin Interpretation text. All the content has been kept exactly the same.
+
+\subsection*{Preamble}
+
+This definition of "Roguelike" was created at the International 
+Roguelike Development Conference 2008 and is the product of a 
+discussion between all who attended. The definition at 
+http://www.roguetemple.com/roguelike-definition/ was used as the 
+starting point for the discussions. Most factors are newly phrased, 
+new factors have been added, some factors have been removed.
+
+\subsection*{General Principles}
+ 
+"Roguelike" refers to a genre, not merely "like-Rogue". The genre is 
+represented by its canon. The canon for Roguelikes is ADOM, Angband, 
+Crawl, Nethack, and Rogue. 
+ 
+This list can be used to determine how roguelike a game is. Missing 
+some points does not mean the game is not a roguelike. Likewise, 
+possessing some points does not mean the game is a roguelike.  
+ 
+The purpose of the definition is for the roguelike community to better 
+understand what the community is studying. It is not to place 
+constraints on developers or games. 
+
+\subsection*{High value factors}
+\begin{itemize}
+
+\item\textbf{Random environment generation:}
+The game world is randomly generated in a way that increases 
+replayability. Appearance and placement of items is random. 
+Appearance of monsters is fixed, their placement is random. 
+Fixed content (plots or puzzles or vaults) removes randomness. 
+
+\item\textbf{Permadeath:} 
+ You are not expected to win the game with your first character. You 
+start over from the first level when you die. (It is possible to save 
+games but the savefile is deleted upon loading.) The random 
+environment makes this enjoyable rather than punishing. 
+
+\item\textbf{Turn-based:}
+Each command corresponds to a single action/movement. The game is not 
+sensitive to time, you can take your time to choose your action.   
+
+\item\textbf{Grid-based:} 
+The world is represented by a uniform grid of tiles. Monsters (and 
+the player) take up one tile, regardless of size. 
+
+\item\textbf{Non-modal:} 
+Movement, battle and other actions take place in the same mode. Every 
+action should be available at any point of the game. Violations to 
+this are ADOM's overworld or Angband's and Crawl's shops. 
+
+\item\textbf{Complexity:} 
+The game has enough complexity to allow several solutions to common 
+goals. This is obtained by providing enough item/monster and item/item 
+interactions and is strongly connected to having just one mode. 
+
+\item\textbf{Resource management:} 
+You have to manage your limited resources (e.g. food, healing potions) 
+and find uses for the resources you receive. 
+
+\item\textbf{Hack'n'slash:}
+Even though there can be much more to the game, killing lots of 
+monsters is a very important part of a roguelike. The game is player- 
+vs-world: there are no monster/monster relations (like enmities, or 
+diplomacy).  
+
+\item\textbf{Exploration and discovery:} 
+The game requires careful exploration of the dungeon levels and 
+discovery of the usage of unidentified items. This has to be done anew 
+every time the player starts a new game.
+
+\end{itemize}
+
+\subsection*{Low value factors} 
+\begin{itemize}
+    \item \textbf{Single player character:}
+    The player controls a single character. The game is player-centric, 
+    the world is viewed through that one character and that character's 
+    death is the end of the game. 
+    
+    \item \textbf{Monsters are similar to players:}
+    Rules that apply to the player apply to monsters as well. They have 
+    inventories, equipment, use items, cast spells etc. 
+    
+    \item \textbf{Tactical challenge:}
+    You have to learn about the tactics before you can make any 
+    significant progress. This process repeats itself, i.e. early game 
+    knowledge is not enough to beat the late game. (Due to random 
+    environments and permanent death, roguelikes are challenging to new 
+    players.) 
+    
+    The game's focus is on providing tactical challenges (as opposed to 
+    strategically working on the big picture, or solving puzzles). 
+    
+    \item \textbf{ASCII display:}
+    The traditional display for roguelikes is to represent the tiled world 
+    by ASCII characters. 
+    
+    \item \textbf{Dungeons:}
+    Roguelikes contain dungeons, such as levels composed of rooms and 
+    corridors. 
+    
+    \item \textbf{Numbers:}
+    The numbers used to describe the character (hit points, attributes 
+    etc.) are deliberately shown. 
+\end{itemize}
+
 \section{Existing Solutions}
 \subsection{Godot, Unity and Unreal}
 These are the top three game engines for any genre. They are not specifically designed for roguelikes and have a longer learning process for the user since all of them require coding visually or manually \cite{godot}\cite{unity}\cite{unreal}.
@@ -51,20 +162,22 @@ Svelte is a JavaScript framework that leans on simplicity and performance with t
 SvelteKit is a full-stack application framework for Svelte. Although this project is not necessarily a full-stack application, a built-in router might be useful in the future, in case the software requires multiple views \cite{sveltekit}.
 
 \subsection{WebGL}
-WebGL (Web Graphics Library) is a JavaScript API for rendering high-performance interactive 3D and 2D graphics within any compatible web browser without the use of plug-ins. WebGL does so by introducing an API that closely conforms to OpenGL ES 2.0 that can be used in HTML canvas elements. This conformance makes it possible for the API to take advantage of hardware graphics acceleration provided by the user's device.
-\todo{fix this}
-% \cite{webgl} TODO: fix this
+WebGL (Web Graphics Library) is a JavaScript API for rendering high-performance interactive 3D and 2D graphics within any compatible web browser without the use of plug-ins. WebGL does so by introducing an API that closely conforms to OpenGL ES 2.0 that can be used in HTML canvas elements. This conformance makes it possible for the API to take advantage of hardware graphics acceleration provided by the user's device \cite{webgl}. 
 
 \subsection{ThreeJS}
 ThreeJS is a canvas library which provides primitives and abstractions on top of WebGL to make building 3D projects faster, more readable, and more maintainable \cite{threejs}.
 
 \subsection{Threlte}
+Threlte is a declarative library built on top of ThreeJS. Instead of writing imperative code with ThreeJS, developers are allowed to write declarative component-based code to describe their 3D scenes \cite{threlte}.
 
 \subsection{TypeScript}
+\todo{write typescript description and features}
 
 \subsection{HOTScript}
+HOTScript is a library of composable functions for types. It uses generics to compose function-like behavior inside TypeScript’s type system \cite{hotscript}.
 
 \subsection{TailwindCSS}
+TailwindCSS is a utility-first CSS library that provides atomic classes which only affect a single CSS property \cite{tailwindcss}.
 
 \subsection{Monaco Editor}
 
