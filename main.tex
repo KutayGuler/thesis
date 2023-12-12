@@ -177,18 +177,36 @@ Threlte is a declarative library built on top of ThreeJS. Instead of writing imp
 HOTScript is a library of composable functions for types. It uses generics to compose function-like behavior inside TypeScript’s type system \cite{hotscript}.
 
 \subsection{TailwindCSS}
-TailwindCSS is a utility-first CSS library that provides atomic classes which only affect a single CSS property \cite{tailwindcss}.
+TailwindCSS is a utility-first CSS library that provides atomic classes which only affect a single CSS property . This atomic approach is inline with Roguelighter's philosophy: Locality of Behavior\cite{tailwindcss}.
 
 \subsection{Monaco Editor}
+Monaco Editor is an open source, fully featured, browser-based code editor. It is the editor that powers Visual Studio Code, which is the most popular integrated development environment as of today \cite{monaco-editor}\cite{developer-survey}.
 
 \subsection{Tauri}
+Tauri is a framework for building tiny and fast binaries for all major desktop platforms. Developers can integrate any front-end framework that compiles to HTML, JS and CSS for building their user interface. The backend of the application is a rust-sourced binary with an API that the front-end can interact with \cite{tauri}.
+
+\subsection{TypeDoc}
+\todo{explain typedoc}
 
 \section{Architecture}
+Roguelighter consists of a library and two apps. The library is the engine itself, and the apps are a desktop application and a website which includes documentation, interactive tutorial and download link for the desktop app. Library code is shared between these two projects with monorepo architecture.
 
-\section{Website}
-\subsection{Documentation}
-\subsection{Interactive Tutorial}
+\subsection{Monorepo}
+\todo{explain monorepo}
+\subsection{Desktop Application}
+\subsection{Configuration File}
+\subsubsection{Views}
+\subsection{Exports}
+
+\textbf{Code Editor}
+\textbf{Map Editor}
+\textbf{Renderer}
+\subsection{Website}
+\subsubsection{Documentation}
+\subsubsection{Interactive Tutorial}
+
 \section{Conclusion}
-\section{Future Work}
+\subsection{Future Work}
 \printbibliography
+\listoffigures
 \end{document}
