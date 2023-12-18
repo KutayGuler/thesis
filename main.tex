@@ -34,8 +34,40 @@ It sounds like there are only upsides to this invention since it can go anywhere
 
 This project’s aim is to create a straightforward train with its blueprints open to the public, that is, an open-source game engine specifically designed for roguelikes. The target audience is people who want to make roguelike games without having to learn coding but there will be grounds for programmers too.\\ 
 
+\subsection{Design Philosophy}
+Roguelighter aims to make the engine as simple as possible and reducing the user input to minimum, while keeping the engine flexible. If there was a trade-off to be made between simplicity and flexibility, then simplicity would drive the development. 
+
+Speaking of making things simpler, one could think that a game engine that promises simplicity should have a visual programming language rather than a textual one. We think the opposite is true.
+
+\subsubsection{Why visual programming is bad}
+A visual programming language or block coding is a programming language that lets users create programs by manipulating program elements graphically rather than by specifying them textually.\\
+
+The problem with this approach is that you have created one more layer of abstraction both for the consumer and the maintainer of the language. Consumer now has to learn the specific nodes rather than learning the language itself and organize the nodes in a 2D space to his/her liking (The textual equivalent of organizing nodes would be not using a code formatter to format your code, which is an obvious waste of time). Maintainer should create readable and accessible nodes for every language feature which doubles his work to produce anything. The brevity of text is traded for the superficial ease of conveying information via verbose graphical elements. \todo{citation needed}.
+
+\subsubsection{Godot Engine and VisualScript}
+Godot Engine, a free, open-source general purpose game engine has discontinued its visual scripting system in its latest stable version. There are multiple reasons why they discontinued it but the crucial answer for Roguelighter's development philosophy was this:\\
+
+"For a lot of potential users that wanted this feature, they found out GDScript was a great fit and they pretty much ended up preferring it over VisualScript. They did not expect to find GDScript to be so easy to learn and use (even if they did not have prior programming knowledge), given none of the popular engines of the time offered this type of high level scripting. For many of these users, Godot ended up being a tool to learn programming instead."
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=1\textwidth]{godot-statistics.png}
+    \captionof{figure}{Godot programming language statistics}
+\end{minipage}\\\\
+
+Once a programming language is easy to use, there is very little reason to make it visual.
+
+\subsubsection{CDD (Configuration Driven Development)}
+Roguelighter does not intend to invent a language because it does not have to. CDD is a way of using modularity to build a loosely coupled set of components that are then composed together using a common interface. This way, making a Roguelighter game will be like filling in the blanks of a document, speaking a natural language.
+
 \subsection{Roguelike}
 The term roguelike originated in a forum discussion to find an umbrella term for games that were similar to each other at the time. After three weeks of discussion, the “granddaddy of these games” Rogue, was appended with “-like” suffix to turn it into a game genre that we still use today \cite{roguelike-term}.\\ 
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=1\textwidth]{rogue.png}
+    \captionof{figure}{A screenshot from the Rogue (1980) game}
+\end{minipage}\\\\
 
 Many roguelike games were released in the upcoming years, so it was time to define what a roguelike game is more concretely. In 2008, the International Roguelike Development Conference was held in Berlin, and gave birth to the Berlin Interpretation \cite{berlin}.\\
 
@@ -150,29 +182,36 @@ every time the player starts a new game.
     etc.) are deliberately shown. 
 \end{itemize}
 
-\section{Existing Solutions}
-\subsection{Godot, Unity and Unreal}
-These are the top three game engines for any genre. They are not specifically designed for roguelikes and have a longer learning process for the user since all of them require coding visually or manually \cite{godot}\cite{unity}\cite{unreal}.\\
+\subsection{Existing Solutions}
+\subsubsection{Godot, Unity and Unreal}
+These are the top three game engines for any genre \todo{cite this}. They are not specifically designed for roguelikes and have a longer learning process for the user since all of them require coding visually or manually \cite{godot}\cite{unity}\cite{unreal}.\\
 
 Unity and Unreal is even used outside of game development industry. Their products are used in automobiles, architecture, engineering, and the film industry \cite{unity}\cite{unity-industry}\cite{unreal}.
 
-\subsection{RPGMaker}
+\todo{engine specific frameworks}
+
+\subsubsection{RPGMaker}
 RPGMaker as the title suggests, is not an engine for roguelikes but our design decisions are similar. RPGMaker is an engine for RPGs (role playing games), and it has a low code environment, and it is the main inspiration for Roguelighter \cite{rpgmaker}. \\
 
 However, unlike Roguelighter, RPGMaker is proprietary software, and it has a UI layer for game data. Roguelighter has no UI for game data which eliminates any UI related issues that can arise like accessibility, readability, or consistency.\\ 
 
-\subsection{T-Engine 4}
+\subsubsection{T-Engine 4}
 \todo{describe}
 
-\subsection{RPG in a Box}
+\subsubsection{RPG in a Box}
 \todo{describe}
  
 \section{Technology}
 \subsection{Svelte and SvelteKit}
-Svelte is a JavaScript framework that leans on simplicity and performance with the power of its compiler-based architecture. An average Svelte project will have less lines of code and bundle size compared to its counterparts like React, Angular and Vue. Which makes it easier to maintain \cite{svelte-less}.\\
+Svelte is a JavaScript framework that leans on simplicity and performance with the power of its compiler-based architecture. An average Svelte project will have less lines of code and bundle size compared to vanilla JavaScript or modern frameworks like React, Angular and Vue, which makes it easier to maintain. This is the framework that powers the Roguelighter desktop application. \cite{svelte-less}.\\
 
-\todo{change this description}
-SvelteKit is a full-stack application framework for Svelte. Although this project is not necessarily a full-stack application, a built-in router might be useful in the future, in case the software requires multiple views \cite{sveltekit}.
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=1\textwidth]{svelte-vs-vanilla.png}
+    \captionof{figure}{A button with onclick function in Svelte and vanilla JavaScript}
+\end{minipage}\\\\
+
+SvelteKit is a full-stack application framework for Svelte. It provides solutions to common problems in modern web development such as routing and server-side rendering. Documentation and interactive tutorial of Roguelighter is made with SvelteKit. \cite{sveltekit}.
 
 \subsection{WebGL}
 WebGL (Web Graphics Library) is a JavaScript API for rendering high-performance interactive 3D and 2D graphics within any compatible web browser without the use of plug-ins. WebGL does so by introducing an API that closely conforms to OpenGL ES 2.0 that can be used in HTML canvas elements. This conformance makes it possible for the API to take advantage of hardware graphics acceleration provided by the user's device \cite{webgl}. 
@@ -190,7 +229,7 @@ Threlte is a declarative library built on top of ThreeJS. Instead of writing imp
 HOTScript is a library of composable functions for types. It uses generics to compose function-like behavior inside TypeScript’s type system \cite{hotscript}.
 
 \subsection{TailwindCSS}
-TailwindCSS is a utility-first CSS library that provides atomic classes which only affect a single CSS property . This atomic approach is inline with Roguelighter's philosophy: Locality of Behavior\cite{tailwindcss}.
+TailwindCSS is a utility-first CSS library that provides atomic classes which only affect a single CSS property . This atomic approach is inline with Roguelighter's philosophy of making things simple and local \cite{tailwindcss}.
 
 \subsection{Monaco Editor}
 Monaco Editor is an open source, fully featured, browser-based code editor. It is the editor that powers Visual Studio Code, which is the most popular integrated development environment as of today \cite{monaco-editor}\cite{developer-survey}.
@@ -212,13 +251,15 @@ First off, sharing code becomes cumbersome. The consumer repo should have a depe
 So what is a monorepo? A monorepo is a single repository containing multiple distinct projects, with well-defined relationships. No need to publish packages since all the consumers are in the same repo. No need to worry about incompatibilities because of projects depending on conflicting versions of third party libraries. Everything related to the monorepo becomes consistent whether that is a simple component, a developer tool or a complex build workflow \cite{monorepo}.
 
 \subsection{Desktop Application}
-This is the application that \todo{explain}\\\\
+This is where users can actually use the engine. It can be downloaded via Roguelighter's official website. \todo{explain}\\\\
 \begin{minipage}{\linewidth}
     \centering
     \includegraphics[width=1\textwidth]{pipeline.png}
     \captionof{figure}{Desktop application build pipeline}
 \end{minipage}\\\\
-\subsubsection{Configuration File}
+
+\subsubsection{Components and relations}
+\subsubsection{Configuration file}
 
 \begin{itemize}
     \item \textbf{Settings:} Provides defaults for the project. Such as default frames per second, default animation function and default animation duration.\\\\
@@ -249,7 +290,7 @@ This is the application that \todo{explain}\\\\
         \captionof{figure}{Example Agents object}
     \end{minipage}\\\\
     
-    \item \textbf{Variables:} These are custom variables that can be defined and manipulated by the developer via using Events.\\\\ \todo{refer Events}
+    \item \textbf{Variables:} These are custom variables that can be defined and manipulated by the developer via using Events \todo{refer Events}.\\\\
     \begin{minipage}{\linewidth}
         \centering
         \includegraphics[width=0.5\textwidth]{variables.png}
@@ -263,31 +304,51 @@ This is the application that \todo{explain}\\\\
         \captionof{figure}{Example Events object}
     \end{minipage}\\\\
     
-    \item \textbf{Key Bindings:} key bindingsss\todo{keyb} \\\\
+    \item \textbf{Key Bindings:} Keybindings is an object where the keys are codes of keyboard events such as "Escape", "ArrowUp" or "KeyF" and values are either internal events provided by the engine or keys of the Events object  \todo{refer Events}.\\\\
     \begin{minipage}{\linewidth}
         \centering
         \includegraphics[width=1\textwidth]{key bindings.png}
         \captionof{figure}{Example Key Bindings object}
     \end{minipage}\\\\
     
-    \item \textbf{GUI:} GUI (Graphical User Interface) \todo{gui} \\\\
+    \item \textbf{GUI:} This object is where user defines everything related to the interface of the game whether it's a pause menu or a custom game component.\\\\
     \begin{minipage}{\linewidth}
         \centering
         \includegraphics[width=1\textwidth]{gui.png}
         \captionof{figure}{Example GUI object}
     \end{minipage}\\\\
     
-    \item \textbf{Errors}
+    \item \textbf{Errors:} This object is special and the only object that is not passed as an argument to the renderer. Errors object exists only to provide compile-time warnings to the developer which helps prevent run-time errors and unexpected behaviors.
 \end{itemize}
 \subsubsection{Views}
 \begin{itemize}
-    \item \textbf{Code Editor:} This is where the configuration file is edited. It defines foundations and behaviors of your game. 
-    \item \textbf{Scene Editor:} Roguelighter games are made up of individual scenes. In Map Editor, you can create new scenes and connect them to each other by placing portals.
+    \item \textbf{Code Editor:} This is where the configuration file is edited. It defines foundations and behaviors of your game.\\
+
+    After Svelte's onMount life-cycle function is executed, a div element inside the markup is fetched as a parameter to Monaco Editor. Once language server is loaded, the div becomes the container of the editor and ready to use. Any changes on the editor is saved into a string. This string then gets transpiled into JavaScript and fetched to the Scene Editor and Renderer as a JSON object.\\\\
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{code-editor.PNG}
+        \captionof{figure}{Code Editor}
+    \end{minipage}\\\\
+
+    \item \textbf{Scene Editor:} Roguelighter games are made up of individual scenes. In Map Editor, you can create new scenes and connect them to each other by placing portals.\\
+    \todo{elaborate}
+    \begin{minipage}{\linewidth}
+        \centering
+        \includegraphics[width=1\textwidth]{scene-editor.PNG}
+        \captionof{figure}{Scene Editor}
+    \end{minipage}\\\\
+    
     \item \textbf{Renderer:} This is the playground for your game, you can see how it plays out.  
 \end{itemize}
-\subsubsection{Exports}
-There are two options for exporting a Roguelighter project. Web or the operating system in the current machine. If the user decides to export their project into the web platform, Roguelighter generates a Svelte web application which has the Renderer from the engine, and the data provided by the user (code, scenes and assets). 
-\todo{show diagrams for exporting}
+\subsubsection{Exporting}
+There are two options for exporting a Roguelighter project. Web or the operating system in the current machine. If the user decides to export their project into the web platform, Roguelighter generates a Svelte web application which has the Renderer from the engine, and the data provided by the user (code, scenes and assets).\\
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=1\textwidth]{tauri.png}
+    \captionof{figure}{Exporting pipeline}
+\end{minipage}\\\\
 
 \subsection{Website}
 \subsubsection{Documentation}
